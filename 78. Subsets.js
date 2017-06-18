@@ -11,7 +11,11 @@ var subsets = function(nums) {
     }
 
     // sort
-    nums.sort();
+    nums.sort(compare);
+
+    function compare(v1, v2) {
+        return v1 - v2;
+    }
 
     var subset = [];
     subsetHelper(nums, 0, subset, result);

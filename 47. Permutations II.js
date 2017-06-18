@@ -11,7 +11,11 @@ var permuteUnique = function(nums) {
     var subset = [];
     var ref= [];
 
-    nums.sort();
+    nums.sort(compare);
+
+    function compare(v1, v2) {
+        return v1 - v2;
+    }
 
     permuteUniqueHelper( nums, subset, ref, results );
 

@@ -28,7 +28,11 @@ var permute = function(nums) {
 
     var subset = [];
 
-    nums.sort();
+    nums.sort(compare);
+
+    function compare(v1, v2) {
+        return v1 - v2;
+    }
 
     permuteHelper( nums, subset, results );
 
