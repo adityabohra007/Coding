@@ -15,7 +15,7 @@ var binarySearch = function (nums, target) {
     while ( start + 1 < end ) {
         var mid = start + Math.floor(( end - start ) / 2);
         if (nums[mid] == target) {
-            return mid;
+            end = mid;
         } else if (nums[mid] > target) {
             end = mid;
         } else {

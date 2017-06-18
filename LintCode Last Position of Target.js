@@ -11,7 +11,7 @@ var lastPosition = function (nums, target) {
         mid = start + Math.round( (end - start) / 2 );
 
         if ( nums[mid] == target ) {
-            return mid;
+            start = mid;
         } else if ( nums[mid] < target ) {
             start = mid;
         } else {
