@@ -10,9 +10,9 @@ var mountainSequence = function (nums) {
     while ( start + 1 < end ) {
         mid = start + Math.round( (end - start) / 2 );
 
-        if( nums[mid-1] < nums[mid] && nums[mid] < nums[mid+1] ) {
+        if( nums[mid] < nums[mid+1] ) {
             start = mid;
-        } else if ( nums[mid-1] > nums[mid] && nums[mid] > nums[mid+1] ) {
+        } else if ( nums[mid] < nums[mid-1] ) {
             end = mid;
         } else {
             return nums[mid];
