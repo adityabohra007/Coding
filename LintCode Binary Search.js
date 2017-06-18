@@ -22,9 +22,8 @@ var binarySearch = function (nums, target) {
             start = mid;
         }
     }
-//    console.log(start);
-//    console.log(end);
 
+    // 先判断 start
     if( nums[start] == target ) {
         return start;
     }
