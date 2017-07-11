@@ -25,7 +25,7 @@ var inOrder = function ( node ) {
     }
 
     inOrder(node.left);
-    result.push(left);
+    result.push(node);
     inOrder(node.left);
 
     return result;
