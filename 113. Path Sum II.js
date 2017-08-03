@@ -45,3 +45,32 @@ var pathSum = function(root, sum) {
         }
     }
 };
+
+// another approach
+var pathSumII = function(root, sum) {
+
+    var result = [];
+    helper ( root, sum, 0, [] );
+    return result;
+
+    function helper ( root, sum, subsum, subArray ) {
+        if ( root ) {
+            subsum += root.val;
+            subArray.push(root.val)
+            var arrayCopy1 = subArray.slice();
+            var arrayCopy2 = subArray.slice();
+        } else {
+            return false;
+        }
+
+        if ( !root.left && !root.right ) {
+            if ( subsum == sum ) {
+                result.push( subArray );
+            }
+        }
+
+        helper ( root.left, sum, subsum, arrayCopy1 );
+        helper ( root.right, sum, subsum, arrayCopy2 );
+
+    }
+};
