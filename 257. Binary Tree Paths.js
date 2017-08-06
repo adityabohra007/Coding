@@ -10,34 +10,28 @@
  * @return {string[]}
  */
 var binaryTreePaths = function(root) {
+
     var result = [];
-
-    if ( !root ) {
-        return result;
+    if ( root ) {
+        helper ( root, root.val.toString() );
     }
-
-    helper( root, result, root.val.toString() );
-
     return result;
 
-    function helper ( root, result, path ) {
+    function helper ( root, path ) {
         if ( !root ) {
             return;
         }
 
         if ( !root.left && !root.right ) {
-            result.push( path );
-            return;
+            result.push ( path );
         }
 
-        if ( root.left ) {
-            helper( root.left, result, (path + '->' + root.left.val).toString() );
+        if ( root.left ){
+            helper ( root.left, (path+'->'+root.left.val).toString() );
         }
 
         if ( root.right ) {
-            helper( root.right, result, (path + '->' + root.right.val).toString() );
+            helper ( root.right, (path+'->'+root.right.val).toString() );
         }
     }
-
-
 };
