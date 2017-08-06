@@ -32,6 +32,7 @@ var flatten = function(root) {
             root.left = null;
         }
 
+        // 返回下一个的起点
         if ( rightPart ) {
             return rightPart;
         }
