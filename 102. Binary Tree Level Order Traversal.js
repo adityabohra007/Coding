@@ -20,7 +20,7 @@ var levelOrder = function(root) {
 
     while ( q.length > 0 ) {
         var level = [];
-        var length = q.length
+        var length = q.length;
         for ( var i = 0; i < length; i++ ) {
             var node = q.shift();
             level.push( node.val );
