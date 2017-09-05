@@ -65,7 +65,7 @@ var deserialize = function(data) {
     var serializedArray = data.slice( 1, data.length-1 ).split(',');
 
     var root = new TreeNode(parseInt(serializedArray[0]));
-    var index = 0
+    var index = 0;
     var queue = [];
     queue.push( root );
 
