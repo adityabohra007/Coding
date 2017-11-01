@@ -20,36 +20,29 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
+    var result = [];
 
-    var results = [];
-    if( nums == null || nums.length == 0 ) {
-        return results;
+    if ( nums == null || nums.length == 0 ) {
+        return result;
     }
 
-    var subset = [];
+    dfs( nums, result, [] );
 
-    nums.sort(compare);
+    return result;
 
-    function compare(v1, v2) {
-        return v1 - v2;
-    }
+    function dfs ( nums, result, tmp )
+    {
+        if ( tmp.length == nums.length ) {
+            result.push(tmp.slice());
+        }
 
-    permuteHelper( nums, subset, results );
-
-    return results;
-
-    function permuteHelper( nums, subset, results ) {
-        if( subset.length == nums.length ){
-            results.push(subset.slice());
-        } else {
-            for( var i = 0; i < nums.length; i++ ){
-                if( subset.indexOf(nums[i]) > -1 ){
-                    continue;
-                }
-                subset.push(nums[i]);
-                permuteHelper(nums, subset, results);
-                subset.pop();
+        for ( var i = 0; i < nums.length; i++ ) {
+            if ( tmp.indexOf(nums[i]) > -1 ) {
+                continue;
             }
+            tmp.push(nums[i]);
+            dfs( nums, result, tmp );
+            tmp.pop();
         }
     }
 };
