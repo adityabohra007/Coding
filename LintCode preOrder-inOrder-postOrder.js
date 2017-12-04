@@ -3,18 +3,24 @@ function TreeNode(val) {
     this.left = this.right = null;
 }
 
-var preOrder1 = function( node ) {
+//-----------------------------------------------------------------------
+var preOrder1 = function( root ) {
     var result = [];
 
-    if ( !node ) {
-        return result;
+    if ( root ) {
+        traverse( root, result );
     }
 
-    result.push(node);
-    preOrder(node.left);
-    preOrder(node.right);
-
     return result;
+
+    function traverse( node, result ) {
+        if ( !node ) {
+            return;
+        }
+        result.push( node.val );
+        traverse( node.left, result );
+        traverse( node.right, result );
+    }
 };
 
 // Another preOrder
@@ -40,30 +46,55 @@ var preOrder2 = function ( root ) {
     return result;
 };
 
-var inOrder = function ( node ) {
+//-----------------------------------------------------------------------
+var inOrder = function ( root ) {
     var result = [];
 
-    if ( !node ) {
-        return result;
+    if ( root ) {
+        traverse( root, result );
     }
 
-    inOrder(node.left);
-    result.push(node);
-    inOrder(node.left);
-
     return result;
+
+    function traverse( node, result ) {
+        if ( !node ) {
+            return;
+        }
+
+        if ( node.left ) {
+            traverse( node.left, result );
+        }
+        result.push( node.val );
+        if ( node.right ) {
+            traverse( node.right, result );
+        }
+    }
+
 };
 
-var postOrder = function ( node ) {
+//-----------------------------------------------------------------------
+var postOrder = function ( root ) {
     var result = [];
 
-    if ( !node ) {
-        return result;
+    if ( root ) {
+        traverse( root, result );
     }
 
-    postOrder(node.left);
-    postOrder(node.right);
-    result.push(node);
-
     return result;
+
+    function traverse( node, result ) {
+        if ( !node ) {
+            return;
+        }
+
+        if ( node.left ) {
+            traverse( node.left, result );
+        }
+
+        if ( node.right ) {
+            traverse( node.right, result );
+        }
+
+        result.push( node.val );
+    }
 };
