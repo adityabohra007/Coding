@@ -4,7 +4,7 @@
  * @param {string[]} wordList
  * @return {number}
  */
-var ladderLength = function(beginWord, endWord, wordList) {
+var ladderLength_1 = function(beginWord, endWord, wordList) {
     if ( wordList == null || wordList.length == 0 ) {
         return 0;
     }
@@ -70,4 +70,44 @@ var ladderLength = function(beginWord, endWord, wordList) {
         wordTmp = wordTmp.join('');
         return wordTmp;
     }
+};
+
+// BFS 解法
+var ladderLength_2 = function(beginWord, endWord, wordList) {
+    var visited = new Set();
+    var queue = [];
+    var level = 1;
+    var letters = 'abcdefghijklmnopqrstuvwxyz';
+    queue.push(beginWord);
+    visited.add(beginWord);
+
+    while(queue.length > 0) {
+
+        var len = queue.length;
+
+        for(var i = 0; i < len; i++) {
+            var word = queue.shift();
+
+            for(var j = 0; j < word.length; j++) {
+                for(var k = 0; k < letters.length; k++) {
+                    var newWord = word.substring(0, j) + letters[k] + word.substring(j + 1);
+
+                    if(wordList.indexOf(newWord) < 0) {
+                        continue;
+                    }
+
+                    if(newWord === endWord) {
+                        return level + 1;
+                    }
+                    if(wordList.indexOf(newWord) > -1 && !visited.has(newWord)) {
+                        queue.push(newWord);
+                        visited.add(newWord);
+                    }
+                }
+            }
+        }
+        level++;
+    }
+
+    return 0;
 };
