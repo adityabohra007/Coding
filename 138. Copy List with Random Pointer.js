@@ -44,3 +44,49 @@ var copyRandomList = function(head) {
 
     return dummyNode.next;
 };
+
+/**
+ * Definition for singly-linked list with a random pointer.
+ * function RandomListNode(label) {
+ *     this.label = label;
+ *     this.next = this.random = null;
+ * }
+ */
+
+/**
+ * @param {RandomListNode} head
+ * @return {RandomListNode}
+ */
+var copyRandomListII = function(head) {
+
+    if ( head == null ) {
+        return head;
+    }
+
+    var map = new Map();
+    var newHead = new RandomListNode(head.label);
+    map.set(head, newHead);
+    var pre = newHead;
+    var node = head.next;
+
+    while ( node != null ) {
+        var newNode = new RandomListNode(node.label);
+        map.set(node, newNode);
+        pre.next = newNode;
+        pre = newNode;
+        node = node.next;
+    }
+
+    node = head;
+    var copyNode = newHead;
+
+    while ( node != null ) {
+        if ( node.random != null ) {
+            copyNode.random = map.get(node.random);
+        }
+        copyNode = copyNode.next;
+        node = node.next;
+    }
+
+    return newHead;
+};
