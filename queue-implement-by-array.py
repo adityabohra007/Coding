@@ -8,7 +8,7 @@ class queue:
     def outqueue(self):
         if not self.queue == []:
             self.queue.pop(0)
-        else
+        else:
             return None
     
     def show(self):
@@ -18,13 +18,13 @@ class queue:
     def head(self):
         if not self.queue == []:
             return self.queue[0]
-        else
+        else:
             return None
 
     def tail(self):
         if not self.queue == []:
             return self.queue[-1]
-        else
+        else:
             return None
     
     def isEmpty(self):
