@@ -1,4 +1,4 @@
-class Solution:
+class Solution1:
     """
     @param arrays: k sorted integer arrays
     @return: a sorted array
@@ -33,3 +33,34 @@ class Solution:
             n2 += 1
 
         return ret
+
+"""
+Solution2 用heap做，先把每个小数组的头放进去
+"""
+import heapq
+
+
+class Solution2:
+    """
+    @param arrays: k sorted integer arrays
+    @return: a sorted array
+    """
+
+    def mergekSortedArrays(self, arrays):
+        result = []
+        heap = []
+
+        for index, array in enumerate(arrays):
+            if len(array) == 0:
+                continue
+            heapq.heappush(heap, (array[0], index, 0))
+
+        while len(heap):
+            val, row, column = heap[0]
+            heapq.heappop(heap)
+            result.append(val)
+            if column + 1 < len(arrays[row]):
+                heapq.heappush(heap,
+                               (arrays[row][column + 1], row, column + 1))
+
+        return result
