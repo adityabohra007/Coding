@@ -56,8 +56,7 @@ class Solution2:
             heapq.heappush(heap, (array[0], index, 0))
 
         while len(heap):
-            val, row, column = heap[0]
-            heapq.heappop(heap)
+            val, row, column = heapq.heappop(heap)
             result.append(val)
             if column + 1 < len(arrays[row]):
                 heapq.heappush(heap,
