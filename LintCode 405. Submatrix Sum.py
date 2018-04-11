@@ -37,11 +37,7 @@ class Solution:
 
         for i in xrange(1, lenM + 1):
             for j in xrange(1, lenN + 1):
-                f[i][
-                    j] = f[i][j - 1] + f[i - 1][j] - f[i -
-                                                       1][j -
-                                                          1] + matrix[i -
-                                                                      1][j - 1]
+                f[i][j] = f[i][j - 1] + f[i - 1][j] - f[i - 1][j - 1] + matrix[i - 1][j - 1]
                 for m in xrange(i):
                     for n in xrange(j):
                         if f[i][j] == f[i][n] + f[m][j] - f[m][n]:
