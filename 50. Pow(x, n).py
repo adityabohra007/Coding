@@ -1,4 +1,4 @@
-class Solution(object):
+class Solution_1(object):
     def myPow(self, x, n):
         if n < 0:
             v = 1 / self.helper(x, -n)
@@ -19,3 +19,23 @@ class Solution(object):
             return value * value * x
         else:
             return value * value
+
+"""
+Solution 2
+"""
+class Solution(object):
+    def myPow(self, x, n):
+        if n < 0:
+            x = 1 / x
+            n = -n
+
+        ret = 1
+        tmp = x
+
+        while n != 0:
+            if n & 1:
+                ret *= tmp
+            tmp *= tmp
+            n /= 2
+
+        return ret
