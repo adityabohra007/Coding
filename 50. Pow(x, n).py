@@ -36,6 +36,6 @@ class Solution(object):
             if n & 1:
                 ret *= tmp
             tmp *= tmp
-            n /= 2
+            n = n >> 1
 
         return ret
