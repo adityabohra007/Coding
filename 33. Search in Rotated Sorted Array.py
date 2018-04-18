@@ -18,7 +18,7 @@ class Solution(object):
 
             if nums[mid] == target:
                 return mid
-            elif nums[mid] < nums[high]:
+            elif nums[mid] <= nums[high]:
                 if nums[mid] < target and target <= nums[high]:
                     low = mid + 1
                 else:
