@@ -7,7 +7,6 @@ class Solution(object):
             arr1[prerequisite[0]] += 1
             arr2[prerequisite[1]].append(prerequisite[0])
 
-        import Queue
         q = []
         total = 0
         for k in xrange(len(arr1)):
