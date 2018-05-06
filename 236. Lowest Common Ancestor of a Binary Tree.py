@@ -15,7 +15,7 @@ Another example is LCA of nodes 5 and 4 is 5,
 since a node can be a descendant of itself according to the LCA definition.
 """
 """
-这个题就是假定所给的p,q两个node都找得到，不考虑找不到的情况
+这个题只考虑p,q两个node都找得到，或者都找不到的情况
 """
 # Definition for a binary tree node.
 # class TreeNode(object):
