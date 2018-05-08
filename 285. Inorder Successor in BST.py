@@ -12,7 +12,7 @@ Note: If the given node has no in-order successor in the tree, return null.
 #         self.right = None
 
 
-class Solution(object):
+class Solution_1(object):
     def inorderSuccessor(self, root, p):
         self.pre = None
         self.result = None
@@ -27,3 +27,25 @@ class Solution(object):
             self.result = root
         self.pre = root
         self.dfs(root.right, p)
+
+"""
+二分循环搜索可能的candidate
+"""
+
+
+class Solution_2:
+    """
+    @param: root: The root of the BST.
+    @param: p: You need find the successor node of p.
+    @return: Successor of p.
+    """
+
+    def inorderSuccessor(self, root, p):
+        result = None
+        while root is not None:
+            if root.val <= p.val:
+                root = root.right
+            else:
+                result = root
+                root = root.left
+        return result
