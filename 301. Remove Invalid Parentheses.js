@@ -47,7 +47,6 @@ var dfs = function (s, result, l, r, index) {
 
         if (s[i] == ')'){
             var subString = s.substring(0, i) + s.substring(i+1);
-            console.log(subString);
             if (r > 0) {
                 dfs(subString, result, l, r-1, i);
             }
