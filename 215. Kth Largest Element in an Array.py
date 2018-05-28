@@ -24,3 +24,24 @@ class Solution(object):
             self.quickSort(A, left, end, k)
         else:
             self.quickSort(A, start, right, k)
+
+"""
+Use Heap
+"""
+import heapq
+
+
+class Solution:
+    """
+    @param nums: an integer unsorted array
+    @param k: an integer from 1 to n
+    @return: the kth largest element
+    """
+
+    def kthLargestElement2(self, nums, k):
+        heap = []
+        for n in nums:
+            heapq.heappush(heap, n)
+            if len(heap) > k:
+                heapq.heappop(heap)
+        return heapq.heappop(heap)
