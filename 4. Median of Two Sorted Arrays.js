@@ -21,8 +21,6 @@ var findMedianSortedArrays = function(nums1, nums2) {
         odd = false;
     }
 
-    console.log('point: '+point);
-
     while ( m >= 0 && n >= 0 ) {
         if ( nums1[m] < nums2[n] ) {
             nums1[index--] = nums2[n--];

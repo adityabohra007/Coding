@@ -24,5 +24,3 @@ class Solution:
         while n >= 0:
             A[l] = B[n]
             n, l = n - 1, l - 1
-
-        return A

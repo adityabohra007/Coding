@@ -1,6 +1,4 @@
-from pprint import pprint
 import sys
-
 class Solution:
     """
     @param nums: the given k sorted arrays

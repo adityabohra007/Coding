@@ -17,19 +17,15 @@ class Solution2:
     @return: nothing
     """
     def heapify(self, A):
-        
+
         for i in range(len(A)):
             self.siftup(A, i)
-    
+
     def siftup(self, A, i):
-        
+
         while i != 0:
-            father = int((i-1)/2)
-            if A[i] > A[father]:
+            father = int((i - 1) / 2)
+            if A[father] < A[i]:
                 break
-            
-            tmp = A[i]
-            A[i] = A[father]
-            A[father] = tmp
-            
+            A[father], A[i] = A[i], A[father]
             i = father
