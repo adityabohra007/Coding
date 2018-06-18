@@ -36,3 +36,33 @@ class Solution(object):
             return
         for c in map[digits[index]]:
             self.dfs(digits, map, tmp + c, index + 1)
+
+"""
+Solution 2
+"""
+class Solution(object):
+    def letterCombinations(self, digits):
+        self.map = {}
+        self.length = len(digits)
+        self.map['2'] = ['a','b','c']
+        self.map['3'] = ['d','e','f']
+        self.map['4'] = ['g','h','i']
+        self.map['5'] = ['j','k','l']
+        self.map['6'] = ['m','n','o']
+        self.map['7'] = ['p','q','r','s']
+        self.map['8'] = ['t','u','v']
+        self.map['9'] = ['w','x','y','z']
+        self.result = []
+        
+        self.dfs(digits, "")
+        return self.result
+    
+    def dfs(self, digits, tmp):
+        if len(tmp) == self.length:
+            if tmp:
+                self.result.append(tmp[:])
+            return
+        for c in self.map[digits[0]]:
+            tmp += c
+            self.dfs(digits[1:], tmp)
+            tmp = tmp[:-1]
