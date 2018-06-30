@@ -22,6 +22,3 @@ class Solution(object):
                 if n.right: q0.append((n.right, i * 2 + 1))
             q = q0
         return ans
-                    
-                
-        
