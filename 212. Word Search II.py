@@ -91,8 +91,8 @@ class Trie:
 
         if key[0] not in self.children:
             self.children[key[0]] = Trie()
-        self.children[key[0]].put(key[1:])
         self.hasWord = True
+        self.children[key[0]].put(key[1:])
 
     def pop(self, key):
         if key == '':

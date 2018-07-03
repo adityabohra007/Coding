@@ -30,7 +30,7 @@ class Solution(object):
                 self.result.append(s)
             return
         for i in xrange(index, len(s)):
-            if i != index and s[i] == s[i - 1]:
+            if i != index and s[i] == s[i - 1]: #去除重复操作，因为相同的括号前面已经试过了
                 continue
             if s[i] == '(':
                 if left > 0:
