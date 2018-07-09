@@ -29,12 +29,12 @@ class Solution(object):
 Solution 2
 """
 # Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
-class Solution(object):
+class Solution2(object):
     def addTwoNumbers(self, l1, l2):
         """
         :type l1: ListNode

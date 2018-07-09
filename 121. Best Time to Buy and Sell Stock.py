@@ -15,7 +15,7 @@ class Solution(object):
 """
 Solution 2
 """
-class Solution(object):
+class Solution2(object):
     def maxProfit(self, prices):
         result = 0
         if len(prices) == 0:

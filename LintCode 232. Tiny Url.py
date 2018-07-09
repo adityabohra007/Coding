@@ -40,7 +40,7 @@ class TinyUrl:
 """
 Solution 2: base62
 """
-class TinyUrl:
+class TinyUrl2:
     def __init__(self):
         self.urlMap = {}
         

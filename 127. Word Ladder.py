@@ -38,27 +38,29 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
 """
 首先先去除wordList的重复值
 """
+from collections import deque
+
+
 class Solution(object):
     def ladderLength(self, beginWord, endWord, wordList):
-        wordSet = set([])
-        for word in wordList:
-            wordSet.add(word)
-
-        wordLen = len(beginWord)
-        from collections import deque
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: List[str]
+        :rtype: int
+        """
+        wordList = set(wordList)
+        if endWord not in wordList:
+            return 0
         q = deque([(beginWord, 1)])
-
         while q:
-            curWord, step = q.popleft()
-            if curWord == endWord:
+            word, step = q.popleft()
+            if word == endWord:
                 return step
-            for i in xrange(wordLen):
-                leftPart = curWord[:i]
-                rightPart = curWord[i + 1:]
+            for i in xrange(len(beginWord)):
                 for j in 'abcdefghijklmnopqrstuvwxyz':
-                    if curWord[i] != j:
-                        nextWord = leftPart + j + rightPart
-                        if nextWord in wordSet:
-                            q.append((nextWord, step + 1))
-                            wordSet.remove(nextWord)
+                    newWord = word[:i] + j + word[i + 1:]
+                    if newWord in wordList:
+                        q.append((newWord, step + 1))
+                        wordList.remove(newWord)
         return 0
