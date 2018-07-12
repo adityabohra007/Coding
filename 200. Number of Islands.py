@@ -29,46 +29,28 @@ class Solution_1(object):
 """
 Solution 2
 """
-
-
-class Solution_2:
+class Solution2:
     """
     @param grid: a boolean 2D matrix
     @return: an integer
     """
-
     def numIslands(self, grid):
-        if not grid or len(grid) == 0 or len(grid[0]) == 0:
+        if grid is None or len(grid) == 0 or len(grid[0]) == 0:
             return 0
-
-        m = len(grid)
-        n = len(grid[0])
-        visited = [[False for i in xrange(n)] for i in xrange(m)]
         result = 0
-
-        def checkPoint(x, y):
-            if x >= 0 and x < m and y >= 0 and y < n and visited[x][y] == False and grid[x][y]:
-                return True
-            return False
-
-        def bfs(x, y):
-            row = [1, 0, -1, 0]
-            col = [0, 1, 0, -1]
-            q = [(x, y)]
-            while len(q) > 0:
-                x = q[0][0]
-                y = q[0][1]
-                visited[x][y] = True
-                q.pop(0)
-                for k in xrange(4):
-                    newX = x + row[k]
-                    newY = y + col[k]
-                    if checkPoint(newX, newY):
-                        q.append((newX, newY))
-
-        for i in xrange(m):
-            for j in xrange(n):
-                if checkPoint(i, j):
+        dx = [1, 0, -1, 0]
+        dy = [0, 1, 0, -1]
+        for i in xrange(len(grid)):
+            for j in xrange(len(grid[0])):
+                if grid[i][j] == 1:
                     result += 1
-                    bfs(i, j)
+                    q = [(i, j)]
+                    while q:
+                        x, y = q.pop(0)
+                        grid[x][y] = 2
+                        for k in xrange(4):
+                            newX = x + dx[k]
+                            newY = y + dy[k]
+                            if newX >= 0 and newX < len(grid) and newY >= 0 and newY < len(grid[0]) and grid[newX][newY] == 1:
+                                q.append((newX, newY))
         return result
