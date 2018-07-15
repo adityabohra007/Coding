@@ -14,15 +14,15 @@ class RandomizedSet:
         return False
 
     def remove(self, val):
-        if val in self.pos:
-            index = self.pos[val]
-            last = self.nums[-1]
-            self.nums[index] = last
-            self.pos[last] = index
-            self.nums.pop()
-            self.pos.pop(val, 0)
-            return True
-        return False
+        if val not in self.pos:
+            return False
+        p = self.pos[val]
+        last = self.nums[-1]
+        self.nums[p] = last
+        self.nums.pop()
+        self.pos[last] = p
+        del(self.pos[val])
+        return True
 
     def getRandom(self):
         return self.nums[random.randint(0, len(self.nums) - 1)]
@@ -40,7 +40,7 @@ Version 2: Python 2
 """
 
 
-class RandomizedSet(object):
+class RandomizedSet2(object):
     def __init__(self):
         self.nums = []
         self.pos = {}

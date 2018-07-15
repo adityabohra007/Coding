@@ -32,7 +32,7 @@ class Solution(object):
 Solution 2
 """
 from collections import deque
-class Solution(object):
+class Solution2(object):
     def maxSlidingWindow(self, nums, k):
         """
         :type nums: List[int]

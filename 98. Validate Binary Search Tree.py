@@ -37,13 +37,21 @@ is 5 but its right child's value is 4.
 """
 class Solution(object):
     def isValidBST(self, root):
-        self.cur = None
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if root is None:
+            return True
         self.isBST = True
+        self.cur = None
         self.dfs(root)
         return self.isBST
-
+    
     def dfs(self, root):
         if root is None:
+            return
+        if not self.isBST:
             return
         self.dfs(root.left)
         if self.cur is not None and self.cur >= root.val:
@@ -57,7 +65,7 @@ class Solution(object):
 import sys
 
 
-class Solution:
+class Solution2:
     """
     @param root: The root of binary tree.
     @return: True if the binary tree is BST, or false
