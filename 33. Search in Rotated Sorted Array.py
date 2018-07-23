@@ -1,9 +1,6 @@
 """
 分2段讨论
 """
-
-
-
 class Solution(object):
     def search(self, nums, target):
         if not nums or len(nums) == 0 or target is None:
@@ -11,7 +8,6 @@ class Solution(object):
 
         low = 0
         high = len(nums) - 1
-        inLeftHalf = target >= nums[0]
 
         while low + 1 < high:
             mid = (low + high) / 2

@@ -1,15 +1,14 @@
-import sys
-
-
 class Solution(object):
     def maxSubArray(self, nums):
-        maxSum = -sys.maxint - 1
-        sum = 0
-        minSum = 0
-
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if nums is None or len(nums) == 0:
+            return
+        minS, result, sum = 0, nums[0], 0
         for num in nums:
             sum += num
-            maxSum = max(maxSum, sum - minSum)
-            minSum = min(minSum, sum)
-
-        return maxSum
+            result = max(result, sum - minS)
+            minS = min(minS, sum)
+        return result

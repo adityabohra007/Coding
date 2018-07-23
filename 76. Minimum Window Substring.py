@@ -27,7 +27,7 @@ class Solution:
 Solution 2
 """
 from collections import defaultdict
-class Solution(object):
+class Solution2(object):
     def minWindow(self, s, t):
         """
         :type s: str
