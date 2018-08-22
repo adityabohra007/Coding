@@ -9,7 +9,6 @@ class Solution:
         if logs is None or len(logs) == 0:
             return result
         logArr = sorted(logs, cmp=self.cmpHelper)
-        tmp = []
         for log in logArr:
             index = log.find(" ")
             if log[index+1].isalpha():

@@ -1,29 +1,25 @@
 class Solution(object):
     def findOrder(self, numCourses, prerequisites):
-        arr1 = [0 for i in xrange(numCourses)]
-        arr2 = [[] for i in xrange(numCourses)]
-
-        for prerequisite in prerequisites:
-            arr1[prerequisite[0]] += 1
-            arr2[prerequisite[1]].append(prerequisite[0])
-
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        p = [0] * numCourses
+        r = [[] for _ in xrange(numCourses)]
+        for prereq in prerequisites:
+            p[prereq[0]] += 1
+            r[prereq[1]].append(prereq[0])
         q = []
+        for i in xrange(len(p)):
+            if p[i] == 0:
+                q.append(i)
         result = []
-        total = 0
-        for k in xrange(len(arr1)):
-            if arr1[k] == 0:
-                q.append(k)
-
-        while len(q) > 0:
-            course = q.pop(0)
-            total += 1
-            result.append(course)
-            for j in arr2[course]:
-                arr1[j] -= 1
-                if arr1[j] == 0:
-                    q.append(j)
-
-        if total == numCourses:
-            return result
-        else:
-            return []
+        while q:
+            n = q.pop(0)
+            result.append(n)
+            for child in r[n]:
+                p[child] -= 1
+                if p[child] == 0:
+                    q.append(child)
+        return result if len(result) == numCourses else []
