@@ -84,9 +84,92 @@ class LFUCache(object):
             self.freq2node[freq] = [node, node]
         
         
+"""
+方法二
+"""
+# class doubleLinkedList(object):
+
+#     def __init__(self, key, val):
+#         self.key = key
+#         self.val = val
+#         self.freq = 1
+#         self.pre = self.next = None
 
 
-# Your LFUCache object will be instantiated and called as such:
-# obj = LFUCache(capacity)
-# param_1 = obj.get(key)
-# obj.put(key,value)
+class LFUCache2(object):
+
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.capacity = capacity
+        self.key2node = {}
+        self.freq2node = {}
+        self.minFreq = 0
+        self.size = 0
+
+    def get(self, key):
+        """
+        :type key: int
+        :rtype: int
+        """
+        if key not in self.key2node:
+            return -1
+        node = self.key2node[key]
+        old_freq = node.freq
+        node.freq = old_freq + 1
+        self.remove(node, old_freq)
+        self.setHead(node, old_freq+1)
+        return node.val
+
+    def put(self, key, value):
+        """
+        :type key: int
+        :type value: int
+        :rtype: void
+        """
+        if self.capacity < 1:
+            return
+        if key in self.key2node:
+            node = self.key2node[key]
+            node.val = value
+            self.get(key)
+        else:
+            node = doubleLinkedList(key, value)
+            if self.size >= self.capacity:
+                tail = self.freq2node[self.minFreq][1]
+                self.remove(tail, self.minFreq)
+                del(self.key2node[tail.key])
+            self.key2node[key] = node
+            self.setHead(node, 1)
+            self.minFreq = 1
+
+    def remove(self, node, freq):
+        self.size -= 1
+        if node.pre:
+            node.pre.next = node.next
+        else:
+            self.freq2node[freq][0] = node.next
+        if node.next:
+            node.next.pre = node.pre
+        else:
+            self.freq2node[freq][1] = node.pre
+        if self.freq2node[freq][0] is None:
+            del(self.freq2node[freq])
+            if freq == self.minFreq:
+                self.minFreq += 1
+
+    def setHead(self, node, freq):
+        self.size += 1
+        node.pre = None
+        node.next = None
+        if freq not in self.freq2node:
+            self.freq2node[freq] = [node, node]
+            if self.minFreq == 0:
+                self.minFreq = freq
+        else:
+            oldHead = self.freq2node[freq][0]
+            node.next = oldHead
+            node.pre = None
+            oldHead.pre = node
+            self.freq2node[freq][0] = node
