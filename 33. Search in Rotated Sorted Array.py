@@ -15,11 +15,13 @@ class Solution(object):
             if nums[mid] == target:
                 return mid
             elif nums[mid] <= nums[high]:
+                # 如果 mid 右半边有序
                 if nums[mid] < target and target <= nums[high]:
                     low = mid + 1
                 else:
                     high = mid - 1
             else:
+                # 如果 mid 左半边有序
                 if nums[mid] > target and target >= nums[low]:
                     high = mid - 1
                 else:

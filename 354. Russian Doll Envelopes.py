@@ -1,4 +1,6 @@
 import bisect
+
+
 class Solution(object):
     def maxEnvelopes(self, envelopes):
         """
@@ -18,4 +20,3 @@ class Solution(object):
             else:
                 l[bisect.bisect_left(l, h)] = h
         return len(l)
-        
