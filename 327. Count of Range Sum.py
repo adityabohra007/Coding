@@ -36,6 +36,3 @@ class Solution(object):
             count += j - i
         sums[l:r] = sorted(sums[l:r])
         return count
-        
-        
-        
