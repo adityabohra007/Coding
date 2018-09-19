@@ -20,7 +20,7 @@ class Solution(object):
         posLeft = [0] * n
         posRight = [0] * n
 
-        # left start from 0 to n-k to get max sum left interval values
+        # posLeft[i]: 以i为右边界的满足长度k的最大值得起始点
         max_sum = prefix_sum[k] - prefix_sum[0]
         for i in xrange(k, n):
             if prefix_sum[i + 1] - prefix_sum[i - k + 1] > max_sum:
@@ -29,7 +29,7 @@ class Solution(object):
             else:
                 posLeft[i] = posLeft[i - 1]
 
-        # right start from 0 to n-k to get max sum right interval values
+        # posRight[i]: 以i为左边界的满足长度k的最大值得起始点 
         posRight[n - k] = n - k
         max_sum = prefix_sum[n] - prefix_sum[n - k]
         for i in xrange(n - k - 1, -1, -1):
